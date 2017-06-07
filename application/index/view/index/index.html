@@ -1,0 +1,77 @@
+{include file="public/head"}
+<body>
+{include file="public/header"}
+<div class="container">
+    <div class="">
+        <ul class="list-inline category">
+            <li class="father only"><span class="item ">全部分类</span>
+                <div class="son">
+                    <ul class="list-unstyled">
+                        {volist name="cat" id="cat"}
+                        <li>
+                            <a href="">{$cat[0]}</a>
+                            <div class="pull-right">
+                                {volist name="cat[1]" id="vo" length="2"}
+                                <a href="">{$vo.name}</a>
+                                {/volist}
+
+                            </div>
+                            <div class="son_detail">
+                                <p>全部分类</p>
+                                <ul class="list-inline">
+                                    {volist name="cat[1]" id="vo"}
+                                    <li><a href="">{$vo.name}</a></li>
+                                    {/volist}
+
+                                </ul>
+                            </div>
+                        </li>
+                        {/volist}
+
+                    </ul>
+
+                </div>
+            </li>
+            <li><a href="">首页</a></li>
+            <li><a href="">电影</a></li>
+            <li><a href="">酒店</a></li>
+            <li><a href="">出行</a></li>
+            <li><a href="">今日新单</a></li>
+        </ul>
+    </div>
+</div>
+<div class="container">
+    <div class="banner">
+        {volist name="banner" id="vo"}
+        <img src="{$vo.image}" height='238' alt="">
+        {/volist}
+        {volist name="banner_right" id="vo"}
+        <img src="{$vo.image}" alt="">
+        {/volist}
+    </div>
+</div>
+<div class="container">
+    <div class="food">
+        <h2>美食</h2>
+        {volist id="vo" name="datas"}
+        <div class="item">
+            <a href="">
+                <figure>
+                    <img src="{$vo.image}" width='216' alt="">
+                </figure>
+                <h4>{$vo.name}</h4>
+                {$vo.description|subtext=20}
+                <p class="price">￥{$vo.origin_price}</p>
+                <p><span>4.7分</span><span class="pull-right">已售{$vo.total_count}件</span></p>
+            </a>
+
+        </div>
+        {/volist}
+    </div>
+</div>
+
+<script>
+    
+</script>
+</body>
+</html>

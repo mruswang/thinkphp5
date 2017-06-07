@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="x-ua-compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>注册</title>
+  <link rel="stylesheet" href="__STATIC__/index/css/bootstrap.css" />
+  <link rel="stylesheet" href="__STATIC__/index/css/login.css" />
+  <script type="text/javascript" src="__LIB__/jquery/1.9.1/jquery.min.js"></script>
+  <style>
+    .form-control{
+      width: 60%;
+    }
+    label.error{color:#C00; padding:0 6px;position: absolute;right: 40%;top:7px;}
+  </style>
+</head>
+<body>
+  <div class=" head">
+    <div class="content clearfix">
+      <ul class="list-inline pull-left">
+        <li><a href="/"><img src="__STATIC__/index/image/logo.png" height='50' alt="logo"></a></li>
+        <li class="divider">|</li>
+        <li><a href="/"></a></li>
+      </ul>
+      <div class="login-link pull-right">
+        <span>我已注册，现在就</span>
+        <a href="{:url('user/login')}">登录</a>
+      </div>
+    </div>
+  </div>
+  <div class="content">
+    <form class="form-horizontal" method="post" action="{:url('user/register')}">
+      <div class="form-group">
+        <label for="" class="col-sm-2 control-label">用户名</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="" name="username" placeholder="请设置用户名" required data-msg-required="请输用户名" minlength="2" data-msg-minlength="至少输入2个字符" maxlength="20" data-msg-maxlength="最多输入20个字符">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="" class="col-sm-2 control-label">邮箱号</label>
+        <div class="col-sm-10">
+          <input type="email" class="form-control" id="" name="email" placeholder="可用于接受团购券账号和密码便于消费"  required data-msg-required="不能为空" data-rule-email="true" data-msg-email="请输入正确的email地址">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="" class="col-sm-2 control-label">密码</label>
+        <div class="col-sm-10">
+          <input type="password" class="form-control"  name="password" placeholder="请设置登录密码" required id="password" >
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="" class="col-sm-2 control-label">确认密码</label>
+        <div class="col-sm-10">
+          <input type="password" class="form-control" id="" name="repassword" placeholder="再次确认密码" required equalTo="#password">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="" class="col-sm-2 control-label">验证码</label>
+        <div class="col-sm-10">
+          <input type="password" class="form-control" id="" name="code" placeholder="请输入验证码" required>
+
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+          {:captcha_img()}
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+          <button type="submit" class="btn btn-default">注册</button>
+        </div>
+      </div>
+    </form>
+
+  </div>
+
+  <div class="foot">
+    <div>
+
+    </div>
+  </div>
+</div>
+  <script type="text/javascript" src="__LIB__/jquery.validation/1.14.0/jquery.validate.js"></script>
+  <script type="text/javascript" src="__LIB__/jquery.validation/1.14.0/validate-methods.js"></script>
+  <script>
+      $(function(){
+          //jquery.validate
+          $(".form-horizontal").validate({
+              submitHandler: function(form) {
+                  //验证通过后 的js代码写在这里
+                  form.submit();
+              }
+          })
+
+      })
+
+
+      //下面是一些常用的验证规则扩展
+
+      /*-------------验证插件配置 懒人建站http://www.51xuediannao.com/-------------*/
+
+      //配置错误提示的节点，默认为label，这里配置成 span （errorElement:'span'）
+      $.validator.setDefaults({
+          errorElement:'label'
+      });
+
+      //配置通用的默认提示语
+      $.extend($.validator.messages, {
+          required: '必填',
+          equalTo: "请再次输入相同的值"
+      });
+
+  </script>
+</body>
+</html>

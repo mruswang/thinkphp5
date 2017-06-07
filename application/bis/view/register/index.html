@@ -1,0 +1,235 @@
+	<!--包含头部文件-->
+	<style>
+
+		label.error{color:#C00; padding:0 6px;}
+	</style>
+{include file="public/header" /}
+<div class="cl pd-5 bg-1 bk-gray mt-20"> <h1>商户入驻申请</h1></div>
+<article class="page-container">
+	<form class="form form-horizontal myform"  method="post" action="{:url('register/add')}">
+	基本信息：
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>商户名称：</label>
+			<div class="formControls col-xs-8 col-sm-3">
+				<input type="text" class="input-text" value="" placeholder="请输入不超过2-15个字符" required minlength="2" data-msg-minlength="至少输入2个字符" maxlength="20" data-msg-required="不能为空" id="" name="name">
+			</div>
+		</div>
+		
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>所属城市：</label>
+			<div class="formControls col-xs-8 col-sm-2"> 
+				<span class="select-box">
+				<select name="city_id" class="select cityId"  required data-msg-required="不能为空">
+					<option value="0">--请选择--</option>
+					{volist name="citys" id="vo"}
+					  <option value="{$vo.id}">{$vo.name}</option>
+
+					{/volist}
+				</select>
+				</span>
+			</div>
+			<div class="formControls col-xs-8 col-sm-2">
+				<span class="select-box">
+				<select name="se_city_id" class="select se_city_id">
+					<option value="0">--请选择--</option>
+				</select>
+				</span> 
+			</div>
+		</div>
+		
+		<div class="row cl">
+              <label class="form-label col-xs-4 col-sm-2">缩略图：</label>
+              <div class="formControls col-xs-8 col-sm-9">
+                <input id="file_upload"  type="file" multiple="true" >
+                <img style="display: none" id="upload_org_code_img" src="" width="150" height="150">
+                <input id="file_upload_image" name="logo" type="hidden" multiple="true" value="" required data-msg-required="不能为空">
+              </div>
+        </div>
+        <div class="row cl">
+              <label class="form-label col-xs-4 col-sm-2">营业执照：</label>
+              <div class="formControls col-xs-8 col-sm-9">
+                <input id="file_upload_other"  type="file" multiple="true" >
+                <img style="display: none" id="upload_org_code_img_other" src="" width="150" height="150">
+                <input id="file_upload_image_other" name="licence_logo" type="hidden" multiple="true" value="" required data-msg-required="不能为空">
+              </div>
+        </div>
+        
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">商户介绍：</label>
+			<div class="formControls col-xs-8 col-sm-9"> 
+				<div id="editor1"  type="text/plain" name="description" style="width:80%;height:300px;"></div>
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">银行账号:</label>
+			<div class="formControls col-xs-8 col-sm-3">
+				<input type="text" class="input-text" value="" placeholder="请输入银行账号" id="" name="bank_info" required data-msg-required="不能为空">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">开户行名称:</label>
+			<div class="formControls col-xs-8 col-sm-3">
+				<input type="text" class="input-text" value="" placeholder="" id="" name="bank_name" required data-msg-required="不能为空">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">开户行姓名:</label>
+			<div class="formControls col-xs-8 col-sm-3">
+				<input type="text" class="input-text" value="" placeholder="" id="" name="bank_user" required data-msg-required="不能为空">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">法人:</label>
+			<div class="formControls col-xs-8 col-sm-3">
+				<input type="text" class="input-text" value="" placeholder="" id="" name="faren" required data-msg-required="不能为空">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">法人电话:</label>
+			<div class="formControls col-xs-8 col-sm-3">
+				<input type="text" class="input-text" value="" id="" name="faren_tel" placeholder="手机号" required data-rule-mobile="true" data-msg-required="请输入手机号" data-msg-mobile="请输入正确格式">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>邮箱：</label>
+			<div class="formControls col-xs-8 col-sm-3">
+				<input type="email" class="input-text" value="" placeholder="" id="" name="email">
+			</div>
+		</div>
+		总店信息：
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">电话:</label>
+			<div class="formControls col-xs-8 col-sm-3">
+				<input type="text" class="input-text" value="" placeholder="" id="" name="tel" placeholder="手机号" required data-rule-tm="true" data-msg-required="请输入手机号" data-msg-tm="请输入正确格式">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">联系人:</label>
+			<div class="formControls col-xs-8 col-sm-3">
+				<input type="text" class="input-text" value="" placeholder="" id="" name="contact" required data-msg-required="不能为空">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>所属分类：</label>
+			<div class="formControls col-xs-8 col-sm-3"> <span class="select-box">
+				<select name="category_id" class="select categoryId" required data-msg-required="不能为空">
+					<option value="0">--请选择--</option>
+					{volist name="categorys" id="vo"}
+					<option value="{$vo.id}">{$vo.name}</option>
+					{/volist}
+					
+				</select>
+				</span> 
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">所属子类：</label>
+			<div class="formControls col-xs-8 col-sm-3 skin-minimal">
+				<div class="check-box se_category_id">
+
+				</div>
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">商户地址：</label>
+			<div class="formControls col-xs-8 col-sm-3">
+				<input type="text" class="input-text" value="" placeholder="" id="" name="address" required data-msg-required="不能为空">
+			</div>
+			<a  class="btn btn-default radius ml-10 maptag">标注</a>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">营业时间:</label>
+			<div class="formControls col-xs-8 col-sm-3">
+				<input type="text" class="input-text" value="" placeholder="" id="" name="open_time" required data-msg-required="不能为空">
+			</div>
+		</div>
+		
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">门店简介：</label>
+			<div class="formControls col-xs-8 col-sm-9"> 
+				<div id="editor"  type="text/plain" name="content" style="width:80%;height:300px;"></div>
+			</div>
+		</div>
+
+		账号信息：
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">用户名:</label>
+			<div class="formControls col-xs-8 col-sm-3">
+				<input type="text" class="input-text" value="" placeholder="" id="username" name="username" >
+			</div>
+			<label id="username_text"></label>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">密码:</label>
+			<div class="formControls col-xs-8 col-sm-3">
+				<input type="password" class="input-text" value="" placeholder="" id="" name="password">
+			</div>
+		</div>
+		
+		<div class="row cl">
+			<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
+				<button  class="btn btn-primary radius" type="submit"><i class="Hui-iconfont">&#xe632;</i> 申请</button>	
+			</div>
+		</div>
+	</form>
+</article>
+
+<!--包含尾部文件-->
+{include file="public/footer" /}
+<script type="text/javascript" src="__LIB__/ueditor/1.4.3/ueditor.config.js"></script>
+<script type="text/javascript" src="__LIB__/ueditor/1.4.3/ueditor.all.min.js"> </script>
+<script type="text/javascript" src="__LIB__/ueditor/1.4.3/lang/zh-cn/zh-cn.js"></script>
+<script>
+ var SCOPE = {
+   'city_url' : '{:url('api/city/getCitysByParentId')}',
+    'category_url' : '{:url('api/category/getCategoryByParentId')}',
+	'uploadify_swf' : '__STATIC__/admin/uploadify/uploadify.swf',
+	'image_upload' : '{:url('api/image/upload')}',
+     'username_url' : '{:url('bis/register/find')}',
+ };
+</script>
+<!--分配编辑器-->
+<script>
+$(function(){
+	var ue = UE.getEditor('editor');
+	var ue1 = UE.getEditor('editor1');
+});
+$(function(){
+    //jquery.validate
+    $(".myform").validate({
+        submitHandler: function(form) {
+            //验证通过后 的js代码写在这里
+            form.submit();
+        }
+    })
+
+})
+
+
+//下面是一些常用的验证规则扩展
+
+/*-------------验证插件配置 懒人建站http://www.51xuediannao.com/-------------*/
+
+//配置错误提示的节点，默认为label，这里配置成 span （errorElement:'span'）
+$.validator.setDefaults({
+    errorElement:'label'
+});
+
+//配置通用的默认提示语
+$.extend($.validator.messages, {
+    required: '必填',
+    equalTo: "请再次输入相同的值"
+});
+//手机验证格式
+jQuery.validator.addMethod("mobile", function (value, element) {
+    var mobile = /^1[3|4|5|7|8]\d{9}$/;
+    return this.optional(element) || (mobile.test(value));
+}, "手机格式不对");
+//电话或手机验证规则
+jQuery.validator.addMethod("tm", function (value, element) {
+    var tm=/(^1[3|4|5|7|8]\d{9}$)|(^\d{3,4}-\d{7,8}$)|(^\d{7,8}$)|(^\d{3,4}-\d{7,8}-\d{1,4}$)|(^\d{7,8}-\d{1,4}$)/;
+    return this.optional(element) || (tm.test(value));
+}, "格式不对");
+</script>
+</body>
+</html>
