@@ -10,7 +10,7 @@
 function captcha_img($id = "")
   {
       $js_src="this.src='" . captcha_src($id) . "'";
-      return '<img src="' . captcha_src($id) . '" alt="点击刷新二维码" onclick="'.$js_src.'" />';
+      return '&lt;img src="' . captcha_src($id) . '" alt="点击刷新二维码" onclick="'.$js_src.'" &gt;';
  
   }
 </pre>
