@@ -1,0 +1,21 @@
+.navbar-nav>li{
+    padding: 10px;
+}
+.navbar-nav>li> a{
+    padding: 0;
+}
+.nav.navbar-nav.navbar-right{
+    padding-right: 15px;
+}
+.city:hover .city-drop-down{
+    display: block;
+}
+.city-drop-down{
+    width: 230%;
+    display: none;
+    position: absolute;
+    background-color:#d6fdd3;
+    z-index: 100;
+    padding: 5px;
+}
+

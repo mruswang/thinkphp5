@@ -1,0 +1,88 @@
+.category{
+    background-color: #313137;
+    margin-bottom: 0;
+}
+.category>li{
+    padding: 15px 20px;
+
+}
+.category>li>a{
+    color: white;
+}
+.category>li:first-child{
+    background-color: #FF318C;
+    color: white;
+    padding: 15px 80px;
+    position: relative;
+}
+
+.category .son{
+    position: absolute;
+    left: 0;
+    top:50px;
+    width: 216px;
+    border: 1px solid #ddd;
+    border-top:none;
+    border-bottom:none;
+}
+
+
+.category .son>ul>li{
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    background-color: #d1d3d4;
+
+}
+
+.category .son_detail{
+    position: absolute;
+    background-color: rgba(161, 167, 161, 0.82);
+    top:0;
+    left:215px;
+    width: 100%;
+    padding: 5px;
+    display: none;
+}
+.category .son>ul>li:hover .son_detail{
+    display: block;
+}
+.banner{
+    margin-left: 231px;
+}
+.banner .item{
+    width: 303px;
+    float: left;
+    padding: 20px;
+    border:1px solid #ddd;
+}
+.banner .item>div{
+    padding: 10px;
+}
+
+.food .item{
+    width: 20%;
+
+    padding: 5px;
+    float: left;
+}
+.food .item a{
+    border: 1px solid rgba(255, 0, 0, 0);
+    display: inline-block;
+    padding: 3px;
+}
+.food .item a:hover{
+    border: 1px solid red;
+}
+
+.food .item a{
+    text-decoration: none;
+}
+.food .item a h4{
+    color: #444;
+}
+.food .item a p{
+    color: #666;
+}
+.food .item .price{
+    color: #ff4883;
+}

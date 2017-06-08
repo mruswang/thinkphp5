@@ -1,0 +1,21 @@
+.content{
+    width: 800px;
+    margin: auto;
+}
+
+.head{
+    background-color: #efeded;
+    padding: 20px 0 ;
+    box-shadow: 1px 1px 2px #a79f9f;
+    margin-bottom: 100px;
+}
+
+.head{
+    font-size: 18px;
+}
+.head .pull-right{
+    margin-top: 10px;
+}
+.head .pull-right a{
+    color: red;
+}
