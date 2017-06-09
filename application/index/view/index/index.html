@@ -1,45 +1,8 @@
 {include file="public/head"}
 <body>
 {include file="public/header"}
-<div class="container">
-    <div class="">
-        <ul class="list-inline category">
-            <li class="father only"><span class="item ">全部分类</span>
-                <div class="son">
-                    <ul class="list-unstyled">
-                        {volist name="cat" id="cat"}
-                        <li>
-                            <a href="">{$cat[0]}</a>
-                            <div class="pull-right">
-                                {volist name="cat[1]" id="vo" length="2"}
-                                <a href="">{$vo.name}</a>
-                                {/volist}
+{include file="public/nav"}
 
-                            </div>
-                            <div class="son_detail">
-                                <p>全部分类</p>
-                                <ul class="list-inline">
-                                    {volist name="cat[1]" id="vo"}
-                                    <li><a href="">{$vo.name}</a></li>
-                                    {/volist}
-
-                                </ul>
-                            </div>
-                        </li>
-                        {/volist}
-
-                    </ul>
-
-                </div>
-            </li>
-            <li><a href="">首页</a></li>
-            <li><a href="">电影</a></li>
-            <li><a href="">酒店</a></li>
-            <li><a href="">出行</a></li>
-            <li><a href="">今日新单</a></li>
-        </ul>
-    </div>
-</div>
 <div class="container">
     <div class="banner">
         {volist name="banner" id="vo"}
