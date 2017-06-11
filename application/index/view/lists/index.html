@@ -1,130 +1,331 @@
-{include file="public/head,public/nav"}
+{include file="public/head"}
+<style>
+  .only .son{
+    display: none;
+  }
+  .only:hover .son{
+    display: block;
+  }
+  .breadcrumb .category{
+    position: absolute;
+  }
+  .se_nav{
+    margin-top: 20px;
+  }
+  .se_nav>li>a{
+    border: 1px solid #ddd;
+    padding: 5px;
+  }
+  .se_nav>li:last-child{
+    position: relative;
 
-<div class="page-body">
-  <div class="filter-bg">
-    <div class="filter-wrap">
-      <div class="w-filter-ab-test">
-        <div class="w-filter-top-nav clearfix" style="margin:12px">
+  }
 
+  .se_nav_son{
+    position: absolute;
+    width: 200px;
+    display: none;
+    border: 1px solid #ddd;
 
-        </div>
+  }
+  .se_nav>li:last-child>a:hover{
+    border: 1px solid #FF318C;
+    border-bottom: none;
+  }
+  .se_nav>li:last-child:hover .se_nav_son{
+    display: block;
+    border: 1px solid #FF318C;
+  }
+  .th_nav{
+    border: 1px solid #ddd;
+  }
+  .th_nav .th_nav_category:last-child {
+    border: none;
+  }
+  .th_nav_category{
+    padding: 20px;
+    border-bottom: 1px dashed #ddd;
+  }
+  .th_nav_category_1,.th_nav_category_2,.th_nav_category_3{
+    float: left;
+    width: 40px;
 
-        <div class="filter-wrapper">
-          <div class="normal-filter ">
-            <div class="w-filter-normal-ab  filter-list-ab">
-              <h5 class="filter-label-ab">分类</h5>
-                                <span class="filter-all-ab">
-                                    <a href="{:url('lists/index')}" class="w-filter-item-ab  item-all-auto-ab"><span class="item-content {if condition='$id eq 0'}filter-active-all-ab{/if} ">全部</span></a>
-                                </span>
-              <div class="j-filter-items-wrap-ab filter-items-wrap-ab">
-                <div class="j-filter-items-ab filter-items-ab filter-content-ab">
-                  {volist name="categorys" id="vo"}
-                  <a href="{:url('lists/index',['id'=>$vo.id])}" class="w-filter-item-ab "><span class="item-content {if condition='$vo.id eq $categoryParentId'}filter-active-all-ab{/if}">{$vo.name}</span></a>
-                  {/volist}
+  }
+  .th_nav_category_2{
+    background-color:#FF318C ;
+    text-align: center;
 
-                </div>
-              </div>
-            </div>
-          </div>
+  }
+  .th_nav_category_3{
+    margin-left: 20px;
 
-        </div>
-        {if condition="$sedcategorys"}
-        <div class="filter-wrapper">
-          <div class="normal-filter ">
-            <div class="w-filter-normal-ab  filter-list-ab">
-              <h5 class="filter-label-ab">子分类</h5>
-                                <span class="filter-all-ab">
+  }
+  .th_nav_category_3 a{
+    color: #b3b2b2;
+  }
+  .th_nav_category_content{
+    width: 920px;
+    float: left;
+  }
+  .th_nav_category_content a{
+    color: #797676;
+    padding: 3px 20px;
+  }
+  .food .item{
+    width: 20%;
 
-                                </span>
-              <div class="j-filter-items-wrap-ab filter-items-wrap-ab">
-                <div class="j-filter-items-ab filter-items-ab filter-content-ab">
-                  {volist name="sedcategorys" id="vo"}
-                  <a href="{:url('lists/index',['id'=>$vo.id])}" class="w-filter-item-ab"><span class="item-content {if condition='$vo.id eq $id'}filter-active-all-ab{/if}">{$vo.name}</span></a>
-                  {/volist}
-                </div>
-              </div>
-            </div>
-          </div>
+    padding: 5px;
+    float: left;
+  }
+  .food .item a{
+    border: 1px solid rgba(255, 0, 0, 0);
+    display: inline-block;
+    padding: 3px;
+  }
+  .food .item a:hover{
+    border: 1px solid red;
+  }
 
-        </div>
-        {/if}
-      </div>
-      <div class="w-sort-bar">
-        <div class="bar-area" style="position: relative; left: 0px; margin-left: 0px; margin-right: 0px; margin-top: 0px; top: 0px;">
-                        <span class="sort-area">
-                            <a class="sort-default {if condition='$orderflag eq ""'}sort-default-active{/if}">默认</a>
-                            <a  href="{:url('lists/index', ['id'=>$id, 'order_sales'=>1])}" class="sort-item sort-down {if condition='$orderflag eq "order_sales"'}sort-default-active{/if}" title="点击按销量降序排序">销量↓</a>
-                            <a href="{:url('lists/index', ['id'=>$id, 'order_price'=>1])}" class="sort-item price-default price {if condition='$orderflag eq "order_price"'}sort-default-active{/if}" title="点击按价格降序排序">价格↓</a>
+  .food .item a{
+    text-decoration: none;
+  }
+  .food .item a h4{
+    color: #444;
+  }
+  .food .item a p{
+    color: #666;
+  }
+  .food .item .price{
+    color: #ff4883;
+  }
+</style>
+<body>
+{include file="public/header"}
+{include file="public/nav"}
 
-                            <a href="{:url('lists/index', ['id'=>$id, 'order_time'=>1])}" class="sort-item sort-up {if condition='$orderflag eq "order_time"'}sort-default-active"{/if}" title="发布时间由近到远">最新发布↑</a>
-                        </span>
-
-        </div>
-      </div>
-      <ul class="itemlist eight-row-height">
-        {volist name="deals" id="vo"}
-        <li class="j-card">
-          <a>
-            <div class="imgbox">
-              <ul class="marketing-label-container">
-                <li class="marketing-label marketing-free-appoint"></li>
-              </ul>
-              <div class="range-area">
-                <div class="range-bg"></div>
-                <div class="range-inner">
-
-                </div>
-              </div>
-              <div class="borderbox">
-                <a target="_blank" href="{:url('detail/index', ['id'=>$vo.id])}"><img src="{$vo.image}" /></a>
-              </div>
-            </div>
-          </a>
-          <div class="contentbox">
-            <a target="_blank" href="{:url('detail/index', ['id'=>$vo.id])}">
-              <div class="header">
-                <h4 class="title ">【{$vo.location_ids|countLocation}店通用】</h4>
-                <div class="collected">精选</div>
-              </div>
-              <p>{$vo.name}</p>
-            </a>
-            <div class="add-info"></div>
-            <div class="pinfo">
-              <span class="price"><span class="moneyico">¥</span>{$vo.current_price}</span>
-              <span class="ori-price">价值<span class="price-line">¥<span>{$vo.origin_price}</span></span></span>
-            </div>
-            <div class="footer">
-              <span class="sold">已售{$vo.buy_count}</span>
-              <div class="bottom-border"></div>
-            </div>
-          </div>
-        </li>
-        {/volist}
+<!--二级导航-->
+<section class="container">
+  <ul class="list-inline se_nav">
+    <li><a href="">全部</a></li>
+    <li><span>&gt;</span></li>
+    <li>
+      <a href="">美食</a>
+      <ul class="list-inline se_nav_son">
+        <li><a href="">美食1</a></li>
+        <li><a href="">美食1</a></li>
+        <li><a href="">美食1</a></li>
+        <li><a href="">美食1</a></li>
+        <li><a href="">美食1</a></li>
+        <li><a href="">美食1</a></li>
       </ul>
+    </li>
+  </ul>
+</section>
+<section class="container ">
+  <div class="th_nav">
+    <!--分类-->
+    <div class="th_nav_category clearfix">
+      <span class="th_nav_category_1">分类</span>
+      <span class="th_nav_category_2">全部</span>
+      <div class="th_nav_category_content">
+        <a href="">今日新单</a>
+        <a href="">今日新单</a>
+        <a href="">今日新单</a>
+        <a href="">今日新单</a>
+        <a href="">今日新单</a>
+        <a href="">今日新单</a>
+        <a href="">今日新单</a>
+        <a href="">今日新单</a>
+        <a href="">今日新单</a>
+        <a href="">今日新单</a>
+        <a href="">今日新单</a>
+        <a href="">今日新单</a>
+        <a href="">今日新单</a>
+        <a href="">今日新单</a>
+        <a href="">今日新单</a>
+        <a href="">今日新单</a>
+        <a href="">今日新单</a>
+        <a href="">今日新单</a>
+        <a href="">今日新单</a>
+        <a href="">今日新单</a>
+        <a href="">今日新单</a>
+        <a href="">今日新单</a>
+        <a href="">今日新单</a>
+        <a href="">今日新单</a>
+        <a href="">今日新单</a>
+        <a href="">今日新单</a>
+        <a href="">今日新单</a>
+        <a href="">今日新单</a>
+      </div>
+      <span class="th_nav_category_3"><a href="">更多</a></span>
+    </div>
+    <!--区域-->
+    <div class="th_nav_category clearfix">
+      <span class="th_nav_category_1">区域</span>
+      <span class="th_nav_category_2">全部</span>
+      <div class="th_nav_category_content">
+        <a href="">今日新单</a>
+        <a href="">今日新单</a>
+        <a href="">今日新单</a>
+        <a href="">今日新单</a>
+        <a href="">今日新单</a>
+        <a href="">今日新单</a>
+        <a href="">今日新单</a>
+        <a href="">今日新单</a>
+        <a href="">今日新单</a>
+        <a href="">今日新单</a>
+        <a href="">今日新单</a>
+        <a href="">今日新单</a>
+        <a href="">今日新单</a>
+        <a href="">今日新单</a>
+        <a href="">今日新单</a>
+        <a href="">今日新单</a>
+        <a href="">今日新单</a>
+        <a href="">今日新单</a>
+        <a href="">今日新单</a>
+        <a href="">今日新单</a>
+        <a href="">今日新单</a>
+        <a href="">今日新单</a>
+        <a href="">今日新单</a>
+        <a href="">今日新单</a>
+        <a href="">今日新单</a>
+        <a href="">今日新单</a>
+        <a href="">今日新单</a>
+        <a href="">今日新单</a>
+      </div>
+      <span class="th_nav_category_3"><a href="">更多</a></span>
+    </div>
+    <!--价格-->
+    <div class="th_nav_category clearfix">
+      <span class="th_nav_category_1">价格</span>
+      <span class="th_nav_category_2">全部</span>
+      <div class="th_nav_category_content">
+        <a href="">今日新单</a>
+        <a href="">今日新单</a>
+        <a href="">今日新单</a>
+        <a href="">今日新单</a>
+        <a href="">今日新单</a>
+        <a href="">今日新单</a>
+        <a href="">今日新单</a>
+      </div>
+    </div>
+    <!--人数-->
+    <div class="th_nav_category clearfix">
+      <span class="th_nav_category_1">人数</span>
+      <span class="th_nav_category_2">全部</span>
+      <div class="th_nav_category_content">
+        <a href="">今日新单</a>
+        <a href="">今日新单</a>
+        <a href="">今日新单</a>
+        <a href="">今日新单</a>
+        <a href="">今日新单</a>
+        <a href="">今日新单</a>
+        <a href="">今日新单</a>
+      </div>
     </div>
   </div>
-  {:pagination($deals)}
+</section>
+<section class="container clearfix">
+  <ul class="list-inline pull-left">
+    <li><a href="">默认</a></li>
+    <li><a href="">销量</a></li>
+    <li><a href="">价格</a></li>
+    <li><a href="">折扣</a></li>
+    <li><a href="">最新发布</a></li>
+    <li><a href="">最新发布</a></li>
+    <li><input type="checkbox"><a href="">免预约</a></li>
+    <li><input type="checkbox"><a href="">优惠券</a></li>
+    <li><input type="checkbox"><a href="">全网低价</a></li>
+    <li><input type="checkbox"><a href="">精品品牌</a></li>
+  </ul>
+  <div class="pull-right">
+    <span>
+      <a href="javascript:;" class=""><span>&lt;</span></a>
+      <span class="">
+        <span class="current">
+          <strong>1</strong>
+        </span>/48</span>
+      <a href="" class="" ><span>&gt;</span></a>
+    </span>
+  </div>
+</section>
+<div class="container">
+  <div class="food">
+    <div class="item">
+      <a href="">
+        <figure>
+          <img src="__STATIC__/index/image/e.jpg" width='216' alt="">
+        </figure>
+        <h4>【武清区】好士烤肉王</h4>
+        <p>烤肉+火锅自助单人餐1份！免费停车，免费WiFi！</p>
+        <p class="price">$49.6</p>
+        <p><span>4.7分</span><span class="pull-right">已售456件</span></p>
+      </a>
+
+    </div>
+    <div class="item">
+      <a href="">
+        <figure>
+          <img src="__STATIC__/index/image/e.jpg" width='216' alt="">
+        </figure>
+        <h4>【武清区】好士烤肉王</h4>
+        <p>烤肉+火锅自助单人餐1份！免费停车，免费WiFi！</p>
+        <p class="price">$49.6</p>
+        <p><span>4.7分</span><span class="pull-right">已售456件</span></p>
+      </a>
+
+    </div>
+    <div class="item">
+      <a href="">
+        <figure>
+          <img src="__STATIC__/index/image/e.jpg" width='216' alt="">
+        </figure>
+        <h4>【武清区】好士烤肉王</h4>
+        <p>烤肉+火锅自助单人餐1份！免费停车，免费WiFi！</p>
+        <p class="price">$49.6</p>
+        <p><span>4.7分</span><span class="pull-right">已售456件</span></p>
+      </a>
+
+    </div>
+    <div class="item">
+      <a href="">
+        <figure>
+          <img src="__STATIC__/index/image/e.jpg" width='216' alt="">
+        </figure>
+        <h4>【武清区】好士烤肉王</h4>
+        <p>烤肉+火锅自助单人餐1份！免费停车，免费WiFi！</p>
+        <p class="price">$49.6</p>
+        <p><span>4.7分</span><span class="pull-right">已售456件</span></p>
+      </a>
+
+    </div>
+    <div class="item">
+      <a href="">
+        <figure>
+          <img src="__STATIC__/index/image/e.jpg" width='216' alt="">
+        </figure>
+        <h4>【武清区】好士烤肉王</h4>
+        <p>烤肉+火锅自助单人餐1份！免费停车，免费WiFi！</p>
+        <p class="price">$49.6</p>
+        <p><span>4.7分</span><span class="pull-right">已售456件</span></p>
+      </a>
+
+    </div>
+    <div class="item">
+      <a href="">
+        <figure>
+          <img src="__STATIC__/index/image/e.jpg" width='216' alt="">
+        </figure>
+        <h4>【武清区】好士烤肉王</h4>
+        <p>烤肉+火锅自助单人餐1份！免费停车，免费WiFi！</p>
+        <p class="price">$49.6</p>
+        <p><span>4.7分</span><span class="pull-right">已售456件</span></p>
+      </a>
+
+    </div>
+
+
   </div>
 </div>
-
-<div class="footer-content">
-  <div class="copyright-info">
-
-  </div>
-</div>
-<script>
-  $(".tab-item-wrap").click(function(){
-    var index = $(".tab-item-wrap").index(this);
-    $(".tab-item-wrap").removeClass("selected");
-    $(".district-cont-wrap").css({display: "none"});
-    $(this).addClass("selected");
-    $(".district-cont-wrap").eq(index).css({display: "block"});
-  });
-
-  $(".sort-area a").click(function(){
-    $(".sort-area a").removeClass("sort-default-active").css({color: "#666"});
-    $(this).addClass("sort-default-active").css({color: "#ff4883"});
-  });
-</script>
 </body>
 </html>
