@@ -1,0 +1,98 @@
+.only .son{
+    display: none;
+}
+.only:hover .son{
+    display: block;
+}
+.breadcrumb .category{
+    position: absolute;
+}
+.se_nav{
+    margin-top: 20px;
+}
+.se_nav>li>a{
+    border: 1px solid #ddd;
+    padding: 5px;
+}
+.se_nav>li:last-child{
+    position: relative;
+
+}
+
+.se_nav_son{
+    position: absolute;
+    width: 200px;
+    display: none;
+    border: 1px solid #ddd;
+
+}
+.se_nav>li:last-child>a:hover{
+    border: 1px solid #FF318C;
+    border-bottom: none;
+}
+.se_nav>li:last-child:hover .se_nav_son{
+    display: block;
+    border: 1px solid #FF318C;
+}
+.th_nav{
+    border: 1px solid #ddd;
+}
+.th_nav .th_nav_category:last-child {
+    border: none;
+}
+.th_nav_category{
+    padding: 20px;
+    border-bottom: 1px dashed #ddd;
+}
+.th_nav_category_1,.th_nav_category_2,.th_nav_category_3{
+    float: left;
+    width: 40px;
+
+}
+.th_nav_category_2{
+    background-color:#FF318C ;
+    text-align: center;
+
+}
+.th_nav_category_3{
+    margin-left: 20px;
+
+}
+.th_nav_category_3 a{
+    color: #b3b2b2;
+}
+.th_nav_category_content{
+    width: 920px;
+    float: left;
+}
+.th_nav_category_content a{
+    color: #797676;
+    padding: 3px 20px;
+}
+.food .item{
+    width: 20%;
+
+    padding: 5px;
+    float: left;
+}
+.food .item a{
+    border: 1px solid rgba(255, 0, 0, 0);
+    display: inline-block;
+    padding: 3px;
+}
+.food .item a:hover{
+    border: 1px solid red;
+}
+
+.food .item a{
+    text-decoration: none;
+}
+.food .item a h4{
+    color: #444;
+}
+.food .item a p{
+    color: #666;
+}
+.food .item .price{
+    color: #ff4883;
+}

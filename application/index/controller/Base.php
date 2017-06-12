@@ -18,6 +18,7 @@ class Base extends Controller
         $this->assign('city',$this->city);
         $this->assign('user',$this->getLoginUser());
         $this->assign('cat',$cat);
+        $this->assign('controller',strtolower(request()->controller()));
         $this->assign('title','o2o团购网');
 
 

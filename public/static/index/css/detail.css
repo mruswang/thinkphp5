@@ -1,0 +1,109 @@
+.only .son{
+    display: none;
+}
+.only:hover .son{
+    display: block;
+}
+.dashed{
+    border-bottom: 1px dashed #ddd;
+    margin-top: 20px;
+}
+section.container{
+    width: 1000px;
+}
+.no_left_padding{
+    padding-left: 0;
+}
+.price{
+    background-color: #ddd;
+    padding: 10px;
+}
+.price .pull-right{
+    border-left:1px solid #717171;
+    padding-left: 10px;
+}
+.price span:first-child{
+    font-size: 28px;
+    color: #FF934C;
+}
+.strategy{
+    border-top: 1px dashed #929191;
+    border-bottom: 1px dashed #929191;
+    padding: 20px 0;
+}
+.strategy span,.strategy a{
+    padding:10px 44px;
+    display: inline-block;
+}
+.strategy a{
+    border-left:1px solid #ddd;
+}
+.time{
+    margin-top: 20px;
+}
+.number{
+    margin-top: 10px;
+}
+.number span:first-child{
+    margin-right:50px;
+}
+.reduce,.plus{
+    height: 25px;
+    border: 1px solid #ddd;
+    display: inline-block;
+    width: 20px;
+    text-align: center;
+    font-size: 16px;
+    cursor: pointer;
+}
+.number input{
+    width: 50px;
+    text-align: center;
+    height: 25px;
+}
+.im_buy{
+    margin-top: 35px;
+}
+.im_buy a{
+    padding: 12px 35px;
+    background-color: #FE8A4B;
+    color: white;
+}
+.content{
+    padding-left: 0;
+    margin-top: 30px;
+}
+.tab-content{
+    margin-top: 20px;
+}
+.tab-pane>div{
+    padding-left:0 ;
+}
+.nav-tabs {
+    border-bottom: 1px solid #FF658E;
+
+}
+.nav-tabs > li{
+    padding-bottom: 1px;
+}
+.nav-tabs > li>a{
+    padding: 15px 45px;
+    font-size: 16px;
+    color: black;
+
+
+}
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
+    color: white;
+    cursor: default;
+    background-color: #FF658E;
+    border: 1px solid #ddd;
+    border-bottom-color: transparent;
+}
+.tab_content_text h3{
+    color: #FF658E;
+    font-size: 18px;
+}
+.ride a{
+    color: black;
+}

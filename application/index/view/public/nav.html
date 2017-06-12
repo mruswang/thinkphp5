@@ -6,10 +6,10 @@
                     <ul class="list-unstyled">
                         {volist name="cat" id="cat"}
                         <li>
-                            <a href="">{$cat[0]}</a>
+                            <a href="{:url('lists/index',['id'=>$key])}">{$cat[0]}</a>
                             <div class="pull-right">
                                 {volist name="cat[1]" id="vo" length="2"}
-                                <a href="">{$vo.name}</a>
+                                <a href="{:url('lists/index', ['id'=>$vo.id])}">{$vo.name}</a>
                                 {/volist}
 
                             </div>
@@ -29,7 +29,7 @@
 
                 </div>
             </li>
-            <li><a href="">首页</a></li>
+            <li><a href="{:url('index/index')}">首页</a></li>
             <li><a href="">电影</a></li>
             <li><a href="">酒店</a></li>
             <li><a href="">出行</a></li>

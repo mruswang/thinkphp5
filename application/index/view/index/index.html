@@ -18,7 +18,7 @@
         <h2>美食</h2>
         {volist id="vo" name="datas"}
         <div class="item">
-            <a href="">
+            <a href="{:url('detail/index',['id'=>$vo.id])}">
                 <figure>
                     <img src="{$vo.image}" width='216' alt="">
                 </figure>

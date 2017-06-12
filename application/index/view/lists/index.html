@@ -1,104 +1,5 @@
 {include file="public/head"}
-<style>
-  .only .son{
-    display: none;
-  }
-  .only:hover .son{
-    display: block;
-  }
-  .breadcrumb .category{
-    position: absolute;
-  }
-  .se_nav{
-    margin-top: 20px;
-  }
-  .se_nav>li>a{
-    border: 1px solid #ddd;
-    padding: 5px;
-  }
-  .se_nav>li:last-child{
-    position: relative;
 
-  }
-
-  .se_nav_son{
-    position: absolute;
-    width: 200px;
-    display: none;
-    border: 1px solid #ddd;
-
-  }
-  .se_nav>li:last-child>a:hover{
-    border: 1px solid #FF318C;
-    border-bottom: none;
-  }
-  .se_nav>li:last-child:hover .se_nav_son{
-    display: block;
-    border: 1px solid #FF318C;
-  }
-  .th_nav{
-    border: 1px solid #ddd;
-  }
-  .th_nav .th_nav_category:last-child {
-    border: none;
-  }
-  .th_nav_category{
-    padding: 20px;
-    border-bottom: 1px dashed #ddd;
-  }
-  .th_nav_category_1,.th_nav_category_2,.th_nav_category_3{
-    float: left;
-    width: 40px;
-
-  }
-  .th_nav_category_2{
-    background-color:#FF318C ;
-    text-align: center;
-
-  }
-  .th_nav_category_3{
-    margin-left: 20px;
-
-  }
-  .th_nav_category_3 a{
-    color: #b3b2b2;
-  }
-  .th_nav_category_content{
-    width: 920px;
-    float: left;
-  }
-  .th_nav_category_content a{
-    color: #797676;
-    padding: 3px 20px;
-  }
-  .food .item{
-    width: 20%;
-
-    padding: 5px;
-    float: left;
-  }
-  .food .item a{
-    border: 1px solid rgba(255, 0, 0, 0);
-    display: inline-block;
-    padding: 3px;
-  }
-  .food .item a:hover{
-    border: 1px solid red;
-  }
-
-  .food .item a{
-    text-decoration: none;
-  }
-  .food .item a h4{
-    color: #444;
-  }
-  .food .item a p{
-    color: #666;
-  }
-  .food .item .price{
-    color: #ff4883;
-  }
-</style>
 <body>
 {include file="public/header"}
 {include file="public/nav"}
@@ -111,12 +12,9 @@
     <li>
       <a href="">美食</a>
       <ul class="list-inline se_nav_son">
-        <li><a href="">美食1</a></li>
-        <li><a href="">美食1</a></li>
-        <li><a href="">美食1</a></li>
-        <li><a href="">美食1</a></li>
-        <li><a href="">美食1</a></li>
-        <li><a href="">美食1</a></li>
+      {volist name="categorys" id="vo"}
+        <li><a href="">{$vo.name}</a></li>
+       {/volist}
       </ul>
     </li>
   </ul>
@@ -126,75 +24,28 @@
     <!--分类-->
     <div class="th_nav_category clearfix">
       <span class="th_nav_category_1">分类</span>
-      <span class="th_nav_category_2">全部</span>
+      <span class=" {if condition='$id eq 0'}th_nav_category_2{/if}">全部</span>
       <div class="th_nav_category_content">
-        <a href="">今日新单</a>
-        <a href="">今日新单</a>
-        <a href="">今日新单</a>
-        <a href="">今日新单</a>
-        <a href="">今日新单</a>
-        <a href="">今日新单</a>
-        <a href="">今日新单</a>
-        <a href="">今日新单</a>
-        <a href="">今日新单</a>
-        <a href="">今日新单</a>
-        <a href="">今日新单</a>
-        <a href="">今日新单</a>
-        <a href="">今日新单</a>
-        <a href="">今日新单</a>
-        <a href="">今日新单</a>
-        <a href="">今日新单</a>
-        <a href="">今日新单</a>
-        <a href="">今日新单</a>
-        <a href="">今日新单</a>
-        <a href="">今日新单</a>
-        <a href="">今日新单</a>
-        <a href="">今日新单</a>
-        <a href="">今日新单</a>
-        <a href="">今日新单</a>
-        <a href="">今日新单</a>
-        <a href="">今日新单</a>
-        <a href="">今日新单</a>
-        <a href="">今日新单</a>
+        {volist name="categorys" id="vo"}
+        <a href="{:url('lists/index',['id'=>$vo.id])}" class="{if condition='$vo.id eq $categoryParentId'}th_nav_category_2{/if}">{$vo.name}</a>
+        {/volist}
       </div>
       <span class="th_nav_category_3"><a href="">更多</a></span>
     </div>
     <!--区域-->
+    {if condition="$sedcategorys"}
     <div class="th_nav_category clearfix">
-      <span class="th_nav_category_1">区域</span>
-      <span class="th_nav_category_2">全部</span>
+      <span class="th_nav_category_1">子分类</span>
+      <span class="{if condition='$id eq 0'}th_nav_category_2{/if}" >全部</span>
       <div class="th_nav_category_content">
-        <a href="">今日新单</a>
-        <a href="">今日新单</a>
-        <a href="">今日新单</a>
-        <a href="">今日新单</a>
-        <a href="">今日新单</a>
-        <a href="">今日新单</a>
-        <a href="">今日新单</a>
-        <a href="">今日新单</a>
-        <a href="">今日新单</a>
-        <a href="">今日新单</a>
-        <a href="">今日新单</a>
-        <a href="">今日新单</a>
-        <a href="">今日新单</a>
-        <a href="">今日新单</a>
-        <a href="">今日新单</a>
-        <a href="">今日新单</a>
-        <a href="">今日新单</a>
-        <a href="">今日新单</a>
-        <a href="">今日新单</a>
-        <a href="">今日新单</a>
-        <a href="">今日新单</a>
-        <a href="">今日新单</a>
-        <a href="">今日新单</a>
-        <a href="">今日新单</a>
-        <a href="">今日新单</a>
-        <a href="">今日新单</a>
-        <a href="">今日新单</a>
-        <a href="">今日新单</a>
+        {volist name="sedcategorys" id="vo"}
+        <a href="{:url('lists/index',['id'=>$vo.id])}"><span class=" {if condition='$vo.id eq $id'}th_nav_category_2{/if}">{$vo.name}</span></a>
+        {/volist}
+
       </div>
       <span class="th_nav_category_3"><a href="">更多</a></span>
     </div>
+    {/if}
     <!--价格-->
     <div class="th_nav_category clearfix">
       <span class="th_nav_category_1">价格</span>
