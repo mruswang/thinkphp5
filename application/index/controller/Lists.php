@@ -13,6 +13,7 @@ class Lists extends Base
         }
         $id = input('id', 0, 'intval');
         $data = [];
+        print_r($id);
         print_r($firstCatIds);
         // id=0 一级分类 二级分类
         if(in_array($id, $firstCatIds)) { // 一级分类 表示在数组中存在$id这个值

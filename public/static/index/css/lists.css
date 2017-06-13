@@ -49,9 +49,11 @@
     width: 40px;
 
 }
-.th_nav_category_2{
+.th_nav_category .th_nav_category_color{
     background-color:#FF318C ;
     text-align: center;
+    padding: 5px;
+    color: white;
 
 }
 .th_nav_category_3{

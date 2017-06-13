@@ -17,7 +17,7 @@
                                 <p>全部分类</p>
                                 <ul class="list-inline">
                                     {volist name="cat[1]" id="vo"}
-                                    <li><a href="">{$vo.name}</a></li>
+                                    <li><a href="{:url('lists/index', ['id'=>$vo.id])}">{$vo.name}</a></li>
                                     {/volist}
 
                                 </ul>

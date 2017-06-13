@@ -24,10 +24,10 @@
     <!--分类-->
     <div class="th_nav_category clearfix">
       <span class="th_nav_category_1">分类</span>
-      <span class=" {if condition='$id eq 0'}th_nav_category_2{/if}">全部</span>
+      <span class="th_nav_category_2 {if condition='$id eq 0'}th_nav_category_color{/if}">全部</span>
       <div class="th_nav_category_content">
         {volist name="categorys" id="vo"}
-        <a href="{:url('lists/index',['id'=>$vo.id])}" class="{if condition='$vo.id eq $categoryParentId'}th_nav_category_2{/if}">{$vo.name}</a>
+        <a href="{:url('lists/index',['id'=>$vo.id])}" class="{if condition='$vo.id eq $categoryParentId'}th_nav_category_color{/if}">{$vo.name}</a>
         {/volist}
       </div>
       <span class="th_nav_category_3"><a href="">更多</a></span>
@@ -36,10 +36,10 @@
     {if condition="$sedcategorys"}
     <div class="th_nav_category clearfix">
       <span class="th_nav_category_1">子分类</span>
-      <span class="{if condition='$id eq 0'}th_nav_category_2{/if}" >全部</span>
+      <span class="th_nav_category_2 {if condition='$id eq 0'}th_nav_category_color{/if}" >全部</span>
       <div class="th_nav_category_content">
         {volist name="sedcategorys" id="vo"}
-        <a href="{:url('lists/index',['id'=>$vo.id])}"><span class=" {if condition='$vo.id eq $id'}th_nav_category_2{/if}">{$vo.name}</span></a>
+        <a href="{:url('lists/index',['id'=>$vo.id])}"><span class=" {if condition='$vo.id eq $id'}th_nav_category_color{/if}">{$vo.name}</span></a>
         {/volist}
 
       </div>
